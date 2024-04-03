@@ -69,7 +69,8 @@ for (let index = 0; index < NumberValue.length; index++) {
                 PossibleAnwer.innerHTML = "!!!"
             }
             if (countofWrongs > 3){
-                PossibleAnwer.innerHTML = "!!!!!!!!!!!!!"
+                Clear();
+                PossibleAnwer.innerHTML = "ERROR"
             }
         }
         }
@@ -105,8 +106,17 @@ for (let index = 0; index < NumberValue.length; index++) {
         if (numberText == " C "){
             Clear();
         }
-    })
 
+        if (InneringObject.innerHTML.length >= 15){
+            InneringObject.style.fontSize = '15px'
+        }else{
+            InneringObject.style.fontSize = '20px'
+        }
+
+        if (InneringObject.innerHTML == ""){
+            StartIndex = 0;
+        }
+    })
 }
 
 
