@@ -97,7 +97,7 @@
 .Promt{
     font-size: 14px !important;
     position: absolute;
-    width: 50px;
+    width: 70px;
     height: 20px;
     border: 1px;
     border-radius: 1px;
@@ -108,10 +108,10 @@
     transition: 1s;
 }
 .Promt.Appear{
-    left: 290px;
+    left: 270px;
 }
 .Promt.Hide{
-    left: 290px;
+    left: 270px;
     top: 100px;
 }
 @keyframes rotating{
