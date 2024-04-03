@@ -90,8 +90,29 @@
     animation-direction: alternate;
 }
 .numbers.Down{
-    background: #6c5a5a;
-    opacity: 0.5;
+    background: #ffffff;
+    opacity: 0.7;
+}
+
+.Promt{
+    font-size: 14px !important;
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    border: 1px;
+    border-radius: 1px;
+    left: 40px;
+    top: 50px;
+    color: rgba(207, 20, 20, 0.708) !important;
+    overflow: hidden;
+    transition: 1s;
+}
+.Promt.Appear{
+    left: 290px;
+}
+.Promt.Hide{
+    left: 290px;
+    top: 100px;
 }
 @keyframes rotating{
     0%{
