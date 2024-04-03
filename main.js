@@ -1,5 +1,6 @@
 var NumberValue = document.querySelectorAll(".numbers");
 var InneringObject = document.getElementById("innering");
+var PossibleAnwer = document.querySelector(".Promt");
 const Container = document.getElementById("Container");
 
 var StartIndex = 0;
@@ -7,6 +8,8 @@ var StartIndex = 0;
 var ColculatingArray = [];
 
 var LastValueOfResult;
+var countofWrongs = 0;
+
 
 const LighMode = {
     DisplayColor: 'red',
@@ -29,6 +32,7 @@ for (let index = 0; index < NumberValue.length; index++) {
         || numberText === " - " 
         || numberText === " * " 
         || numberText === " / "
+        || numberText === "."
         )
         {
             InneringObject.innerHTML += numberText
@@ -47,6 +51,29 @@ for (let index = 0; index < NumberValue.length; index++) {
         KKButton(numberText , "KK");
         XButton(numberText , " X ");
 
+        if (InneringObject.innerHTML.includes(" ")){
+        try {
+            let defining = InneringObject.innerHTML;
+            let Result = eval(defining);
+            if (Result != undefined){
+                PossibleAnwer.classList.add("Appear");
+                PossibleAnwer.innerHTML = Result;
+            }else{
+                PossibleAnwer.classList.remove("Appear");
+                PossibleAnwer.innerHTML = "";
+            }
+            countofWrongs = 0;
+        }catch{
+            countofWrongs++;
+            if (countofWrongs > 1){
+                PossibleAnwer.innerHTML = "!!!"
+            }
+            if (countofWrongs > 3){
+                PossibleAnwer.innerHTML = "!!!!!!!!!!!!!"
+            }
+        }
+        }
+
         if (numberText == " = "){
             try{
             let defining = InneringObject.innerHTML;
@@ -54,6 +81,15 @@ for (let index = 0; index < NumberValue.length; index++) {
             InneringObject.innerHTML += " = " + Result;
             LastValueOfResult = Result;
             StartIndex = 0;
+            countofWrongs = 0;
+            
+            PossibleAnwer.classList.remove("Appear");
+            PossibleAnwer.classList.add("Hide");
+            setTimeout(function(){
+                PossibleAnwer.classList.remove("Hide");
+                PossibleAnwer.innerHTML = "";
+            },1000)
+
             if (Result === undefined){
                 Clear();
             } 
@@ -78,6 +114,10 @@ for (let index = 0; index < NumberValue.length; index++) {
 function Clear(){
     InneringObject.innerHTML = ""; 
     StartIndex = 0;
+    PossibleAnwer.innerHTML = "";
+    PossibleAnwer.classList.remove("Appear");
+    countofWrongs = 0;
+
     // if (LastValueOfResult != undefined){
     //     InneringObject.innerHTML = LastValueOfResult;
     // } 
@@ -112,3 +152,4 @@ function KButton(numberText , letter){
 // numbersElements.forEach(element => {
 //     element.style.backgroundColor = '#415858'
 // });
+
