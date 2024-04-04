@@ -74,6 +74,10 @@ for (let index = 0; index < NumberValue.length; index++) {
                 PossibleAnwer.innerHTML = "ERROR"
                 setTimeout(function(){
                     PossibleAnwer.classList.add("Hide")
+                    setTimeout(function(){
+                        PossibleAnwer.classList.remove("Hide")
+                        PossibleAnwer.innerHTML = "";
+                    } , 1000 )
                 },1000)
             }
         }
@@ -128,13 +132,14 @@ for (let index = 0; index < NumberValue.length; index++) {
 
         if (InneringObject.innerHTML == ""){
             if (StartIndex != 0){
-            PossibleAnwer.classList.add("Hide");
-            setTimeout(function(){
-                PossibleAnwer.innerHTML = "";
-                PossibleAnwer.classList.remove("Hide")
-            } , 1000)
-            StartIndex = 0;
-        }           
+                PossibleAnwer.classList.add("Hide");
+                setTimeout(function(){
+                    PossibleAnwer.innerHTML = "";
+                    PossibleAnwer.classList.remove("Hide")
+                } , 1000)
+                StartIndex = 0;
+            }  
+            StartIndex = 0;         
         }
         // else{
         //     PossibleAnwer.classList.remove("Hide")
