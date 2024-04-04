@@ -144,6 +144,10 @@ for (let index = 0; index < NumberValue.length; index++) {
         // else{
         //     PossibleAnwer.classList.remove("Hide")
         // }
+
+        if (isNaN(PossibleAnwer.innerHTML)){
+            Clear();
+        }
     })
 }
 
