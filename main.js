@@ -7,9 +7,10 @@ var StartIndex = 0;
 
 var ColculatingArray = [];
 
-var LastValueOfResult;
+var LastValueOfResult = 0;
 var countofWrongs = 0;
 
+var EqualPressed = 0;
 
 const LighMode = {
     DisplayColor: 'red',
@@ -65,25 +66,37 @@ for (let index = 0; index < NumberValue.length; index++) {
             countofWrongs = 0;
         }catch{
             countofWrongs++;
-            if (countofWrongs > 1){
-                PossibleAnwer.innerHTML = "!!!"
-            }
-            if (countofWrongs > 3){
+            // if (countofWrongs > 1){
+            //     PossibleAnwer.innerHTML = "!!!"
+            // }
+            if (countofWrongs > 2){
                 Clear();
                 PossibleAnwer.innerHTML = "ERROR"
+                setTimeout(function(){
+                    PossibleAnwer.classList.add("Hide")
+                },1000)
             }
         }
         }
 
         if (numberText == " = "){
+            
             try{
             let defining = InneringObject.innerHTML;
             let Result = eval(defining);
             InneringObject.innerHTML += " = " + Result;
             LastValueOfResult = Result;
+            EqualPressed++;
+
+            
+            // if (EqualPressed > 1 && Number.isInteger(LastValueOfResult)){
+            //     InneringObject.innerHTML = LastValueOfResult;
+            // }else{
             StartIndex = 0;
             countofWrongs = 0;
-            
+            EqualPressed = 0;
+            // }
+
             PossibleAnwer.classList.remove("Appear");
             PossibleAnwer.classList.add("Hide");
             setTimeout(function(){
@@ -114,7 +127,16 @@ for (let index = 0; index < NumberValue.length; index++) {
         }
 
         if (InneringObject.innerHTML == ""){
-            StartIndex = 0;
+            if (StartIndex != 0){
+            PossibleAnwer.classList.add("Hide");
+            setTimeout(function(){
+                PossibleAnwer.innerHTML = "";
+                PossibleAnwer.classList.remove("Hide")
+            } , 1000)
+        }
+            
+        }else{
+            PossibleAnwer.classList.remove("Hide")
         }
     })
 }
@@ -123,10 +145,12 @@ for (let index = 0; index < NumberValue.length; index++) {
 
 function Clear(){
     InneringObject.innerHTML = ""; 
-    StartIndex = 0;
     PossibleAnwer.innerHTML = "";
     PossibleAnwer.classList.remove("Appear");
+
     countofWrongs = 0;
+    StartIndex = 0;
+    EqualPressed = 0;
 
     // if (LastValueOfResult != undefined){
     //     InneringObject.innerHTML = LastValueOfResult;
@@ -136,7 +160,13 @@ function Clear(){
 
 function XButton(numberText , letter){
     if (numberText == letter){
-    InneringObject.innerHTML = InneringObject.innerHTML.substring(0,InneringObject.innerHTML.length - 1);
+
+        if (InneringObject.innerHTML[InneringObject.innerHTML.length - 2] === ' ') {
+            InneringObject.innerHTML = InneringObject.innerHTML.substring(0, InneringObject.innerHTML.length - 2);
+        } else {
+            InneringObject.innerHTML = InneringObject.innerHTML.substring(0, InneringObject.innerHTML.length - 1);
+        }
+
     }
 }
 function KKButton(numberText , letter){
