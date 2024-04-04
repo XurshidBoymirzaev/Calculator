@@ -133,11 +133,12 @@ for (let index = 0; index < NumberValue.length; index++) {
                 PossibleAnwer.innerHTML = "";
                 PossibleAnwer.classList.remove("Hide")
             } , 1000)
+            StartIndex = 0;
+        }           
         }
-            
-        }else{
-            PossibleAnwer.classList.remove("Hide")
-        }
+        // else{
+        //     PossibleAnwer.classList.remove("Hide")
+        // }
     })
 }
 
@@ -192,4 +193,3 @@ function KButton(numberText , letter){
 // numbersElements.forEach(element => {
 //     element.style.backgroundColor = '#415858'
 // });
-
