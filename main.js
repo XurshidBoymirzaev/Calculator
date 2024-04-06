@@ -12,6 +12,8 @@ var countofWrongs = 0;
 
 var EqualPressed = 0;
 
+var indexOfUsingDot = 0;
+
 const LighMode = {
     DisplayColor: 'red',
     BagroundColor: "Orange",
@@ -144,9 +146,23 @@ for (let index = 0; index < NumberValue.length; index++) {
         // else{
         //     PossibleAnwer.classList.remove("Hide")
         // }
+        if (InneringObject.innerHTML.endsWith(".")){
+            indexOfUsingDot++;
+        }
+        if (indexOfUsingDot > 1 && numberText === "."){
+            InneringObject.innerHTML = InneringObject.innerHTML.substring(0, InneringObject.innerHTML.length - 1);
+        }else if(numberText != "."){
+            indexOfUsingDot = 0;
+        }
 
         if (isNaN(PossibleAnwer.innerHTML)){
             Clear();
+        }
+
+        if (PossibleAnwer.innerHTML.length > 7){
+            PossibleAnwer.style.fontSize = "8px"
+        }else if(PossibleAnwer.innerHTML.length < 10){
+            PossibleAnwer.style.fontSize = "14px"
         }
     })
 }
